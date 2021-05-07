@@ -1,0 +1,83 @@
+include ../utils/mixins
+include ../utils/includes
+- var pathPrefix = '/';
+- var description = 'Description';
+- var pageClass = '';
+// for legacy page rules || terms || privacy || cookie
+- var pageName = '';
+-
+    var $lang = _lang || 'ru'
+
+    //- var _trans = _lara ?  {} : require("../../../../resources/lang/en.json")
+
+    //- var t = function ($key) {
+    //-     return _lara
+    //-         ? __($key)
+    //-         : _trans[$lang + '.' + $key]
+    //- };
+
+    //- var title = t('home.title')
+
+block variables
+
+doctype html
+html(lang= $lang, data-locale= $lang)
+    head
+        meta(charset='utf-8')
+        meta(http-equiv="x-ua-compatible" content="ie=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(content="telephone=no" name="format-detection")
+        meta(name="HandheldFriendly" content="true")
+        //- +meta()
+        //- +favicon()
+
+
+
+        link(rel='stylesheet' href=pathPrefix + 'css/app.css')
+
+        link(href='currentSite/bootstrap.min.css' rel='stylesheet')
+        link(href='currentSite/colorbox.css' rel='stylesheet')
+        link(href='currentSite/site.css' rel='stylesheet')
+        link(href='currentSite/basket.css' rel='stylesheet')
+        link(href='currentSite/scroll-top.css' rel='stylesheet')
+        //- if _lara
+        //-     meta(name="csrf-token" content = csrf_token())
+        //- link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@animxyz/core@0.4.0/dist/animxyz.min.css')
+
+        block head
+
+    body.body
+        .wrap
+            +header()
+            .container.content
+                block content
+            +footer()
+        //- main.layout(class=pageClass)
+        //-     .layout__header
+        //-         +header()
+        //-     main.layout__main
+        //-         block content
+        //-     .layout__footer
+        //-         +footer()
+
+        //- block modals
+
+        script(src='currentSite/jquery.min.js')
+        script(src='currentSite/yii.js')
+        script(src='currentSite/bootstrap.min.js')
+        script(src='currentSite/typeahead.bundle.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.3/jquery.colorbox-min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.3/i18n/jquery.colorbox-ru.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
+        script(src='currentSite/flexmenu.js')
+        script(src='currentSite/site.js')
+        script(src='currentSite/test-drive.js')
+        script(src='currentSite/imagesloaded.pkgd.min.js')
+        script(src='currentSite/masonry.pkgd.min.js')
+        //- script(src='currentSite/counters.js')
+        script(src='currentSite/scroll-top.js')
+
+
+        script(type='text/javascript' src=pathPrefix + 'js/vendors.js')
+        script(type='text/javascript' src=pathPrefix + 'js/app.js')
+        block script

@@ -1,0 +1,185 @@
+extends ../layout/main
+
+block variables
+    //- - title = t('home.title');
+    //- - pageClass = 'main-page'
+
+
+block content
+    //- section.intro
+    //-     | intro
+    .nk-collections
+        .nk-collections__title Персональная подборка
+        .nk-collections__subtitle Массажные кресла до 1 500 000 ₽
+        .nk-collections__banner.nk-banner
+            .nk-banner__inner
+                .nk-banner__container
+                    .left Для получателей данной подборки товаров действует <span class="desktop-hidden">индивидуальная система скидок</span>
+                    .right индивидуальная система скидок
+
+
+        -
+            var list = [
+                {
+                    badge: 'video',
+                    videoLink: 'eh-0knDpn5g',
+                    img: 'demo1.png',
+                    title: 'Ergonova Organic 4<br/> RK Rose Gold',
+                    details: ['Бренд: Германия','Удлиненная массажная каретка 127 см','10 автоматических программ ','5 техник массажа (Шведский, Бразильский, Китайский, Греческий, Японский).'],
+                    hit: false,
+                    offer: '-15%',
+                    price: {
+                        current: '329 000',
+                        old: '390 000',
+                        credit: '13 708'
+                    },
+                    gift: ''
+                },
+                {
+                    badge: 'video',
+                    videoLink: 'bxqLsrlakK8',
+                    img: 'demo2.png',
+                    title: 'Ergonova <br/>Full Body ',
+                    details: ['Бренд: Германия','Модель 2021 года','Массажная каретка SL c доп. функцией ручного массажа шейно-воротниковой зоны','Графеновый прогрев (эффект сауны, нагрев до 50 градусов)','Прогрев икр','Новые запатентованные ролики в блоке для ног (Улучшенная точечная проработка аккупунктурных точек в области стопы)'],
+                    hit: false,
+                    offer: '-14%',
+                    price: {
+                        current: '620 000',
+                        old: '720 000',
+                        credit: '17 350'
+                    },
+                    gift: 'Виброплатформа Begibey SlimBox'
+                },
+                {
+                    badge: 'video',
+                    videoLink: 'eh-0knDpn5g',
+                    img: 'demo3.png',
+                    title: 'Ergonova <br/>Catapult LTE ',
+                    details: ['Бренд: Германия','Модель 2020 года','Массаж и прогрев коленей','Удлиненная SL массажная каретка 125 см','Ультра-быстрый прогрев (графен)','4 массажных режима для ног'],
+                    hit: true,
+                    offer: '-15%',
+                    price: {
+                        current: '570 000',
+                        old: '670 000',
+                        credit: '23 750'
+                    },
+                    gift: 'Виброплатформа Begibey SlimBox',
+                    giftPrice: '29 900 ₽'
+                },
+                {
+                    badge: 'japan',
+                    img: 'demo4.png',
+                    title: 'DreamWave <br/>(OHCO) M.8 ',
+                    details: ['Страна: Япония','Модель 2021 года','Запатентованный механизм DeltaWave разработан для интуитивного и реалистичного массажа','Роликовый массаж стоп с подогревом роликов','Ароматерапия.'],
+                    //- hit: true,
+                    offer: '-15%',
+                    price: {
+                        current: '1 100 000',
+                        old: '1 295 000',
+                        credit: '43 833'
+                    },
+                    gift: 'Массажер Ergonova Feeltrain',
+                    giftPrice: '18 900 ₽'
+                },
+                {
+                    badge: 'japan',
+                    img: 'demo5.png',
+                    title: 'Fujiiryoki <br/>JP-2000',
+                    details: ['Страна: Япония','Компания Fujiiryoki производит массажное оборудование с 1920','Мягкий и плавный массаж, который ощущается так, как будто он делается вручную','85 разных видов массажа','23 автоматические программы','Мягкое и эффективное растяжение всего тела - от шеи до ног. '],
+                    //- hit: true,
+                    offer: '-15%',
+                    price: {
+                        current: '1 100 000',
+                        old: '1 295 000',
+                        credit: '43 833'
+                    },
+                    gift: 'Массажер Ergonova Feeltrain',
+                    giftPrice: '18 900 ₽'
+                },
+            ]
+        ul.nk-collections__list.nk-list
+            each item in list
+                li.nk-list__item.nk-item
+                    .nk-item__col
+                        .nk-item__inner
+                            .nk-item__badge
+                                if item.badge === 'video'
+                                    .nk-item__video.js-modal-video(data-video!=item.videoLink)
+                                        span Видео
+                                        +icon('play')
+                                else if item.badge === 'japan'
+                                    .nk-item__country.nk-item__country_japan
+                                        span Япония
+                                        img(src="img/badges/japan.svg", alt="")
+                            .nk-item__img
+                                img(src!=`img/demo/${item.img}`, alt!=item.title.replace('<br/>',''))
+                    .nk-item__col
+                        .nk-item__inner
+                            .nk-item__title!=item.title
+                            .nk-item__product-info.nk-item__product-info_mobile
+                                .nk-item__delivery
+                                    +icon('delivery')
+                                    span Бесплатная <br/>доставка по РФ
+                                .nk-item__guarantee
+                                    +icon('guarantee')
+                                    span 3 года <br/>гарантии
+                            ul.nk-item__detail.nk-detail
+                                each listItem in item.details
+                                    li.nk-detail__item!=listItem
+                            if item.hit
+                                .nk-item__hit
+                                    img(src="img/badges/hit.svg", alt="Хит продаж")
+                            if item.gift != ''
+                                .nk-item__gift.nk-item__gift_mobile
+                                    +icon('gift')
+                                    span.text
+                                        .gift-title Подарок
+                                        p!=item.gift
+                                    span.price!=item.giftPrice
+
+
+                    .nk-item__col
+                        .nk-item__inner
+                            .nk-item__title-mobile!=item.title
+                            .nk-item__offer!=item.offer
+                            .nk-item__price.nk-price
+                                .nk-price__top
+                                    .nk-price__current!=item.price.current + ' ₽'
+                                    .nk-price__old!=item.price.old + ' ₽'
+                                .nk-price__bottom
+                                    span.nk-mark!= 'от ' + item.price.credit + ' ₽'
+                                    span в рассрочку
+                            .nk-item__activities
+                                a.nk-btn(href="#") Подробнее
+                                a.nk-btn-graph(href="#"): +icon('graph')
+                            .nk-item__product-info
+                                .nk-item__delivery
+                                    +icon('delivery')
+                                    span Бесплатная <br/>доставка по РФ
+                                .nk-item__guarantee
+                                    +icon('guarantee')
+                                    span 3 года <br/>гарантии
+                            if item.gift != ''
+                                .nk-item__gift
+                                    +icon('gift')
+                                    span.text
+                                        .gift-title Подарок
+                                        p!=item.gift
+
+
+block script
+    script.
+        $('.js-modal-video').on('click', function(){
+            var link = $(this).attr('data-video');
+            $.colorbox({
+                href: 'http://www.youtube.com/embed/' + link,
+                width: '600px',
+                height: '400px',
+                maxWidth : '95%',
+                iframe: true,
+                close: "",
+                onComplete:function(){
+                }
+            });
+            return false;
+        });

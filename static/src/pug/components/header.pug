@@ -1,0 +1,495 @@
+mixin header(data)
+    - data = data || {}
+    //- -
+    //-   var languages = _lara ? _languages : [
+    //-     {lang: 'nl', url: '#', isActive: false},
+    //-     {lang: 'fr', url: '#', isActive: false},
+    //-     {lang: 'en', url: '#', isActive: true}
+    //-   ]
+    //- .header(class={'header_white-right': headerWhiteRight})
+    //-     .header__container
+    //-         a.logo(href="/")
+    //-             +icon('logo')
+    //-         .header__trigger
+    //-         .header__lang
+    //-             ul
+    //-                 each data in languages
+    //-                     li
+    //-                         a(href=data.url class=data.isActive && 'is-active') #{data.lang}
+
+    .header
+        .container
+            // Логотип
+            a(href='/')
+                .logo
+            nav.navbar.navbar-default.navbar-fixed-top.navbar-top-absolute
+                .blackout.js-blackout
+                .container
+                    .navbar-header
+                        button.navbar-toggle.collapsed(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false')
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                        // Верхнее меню
+                        ul.nav.navbar-nav
+                            li.dropdown
+                                a.dropdown-toggle.change-region-active(href='#' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false')
+                                    | Москва
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        span.change-region(data-regionid='4312') Москва
+                                    li
+                                        span.change-region(data-regionid='4891') Самара
+                                    li
+                                        span.change-region(data-regionid='5080') Екатеринбург
+                                    li
+                                        span.change-region(data-regionid='5356') Тюмень
+                                    li
+                                        span.change-region(data-regionid='5507') Челябинск
+                                    li
+                                        span.change-region(data-regionid='5019395') Магнитогорск
+                                    li
+                                        span.change-region(data-regionid='5019396') Уфа
+                                    li
+                                        span.change-region(data-regionid='5019397') Оренбург
+                            li.top-menu
+                                a(href='/o-kompanii') О компании
+                            li.top-menu
+                                a(href='/vozvrat-tovara') Возврат товара
+                            li.top-menu
+                                a(href='/rassrochka') Рассрочка
+                            li.top-menu
+                                a(href='/service') Сервис
+                            li.top-menu
+                                a(href='/trade-in') TRADE-IN
+                            li.top-menu
+                                a(href='/actions') Акции
+                            li.top-menu
+                                a(href='/delivery') Доставка
+                            li.top-menu
+                                a(href='/contacts') Контакты
+                            li.top-menu
+                                a(href='/info') Журнал
+                        ul.nav.navbar-nav.navbar-right
+                            li
+                                a.email-boss-button(href='/site/email-boss')
+                                    i
+                                    | Письмо директору
+            .header-basket
+                a(rel='nofollow' href='/basket/view')
+                    .basket-icon
+                        .quantity.quantity-hide 0
+                    .basket-text Ваша корзина
+            .contacts
+                .phone-icon
+                    .phone-icon-text
+                        | Ежедневно
+                .phone
+                    .number
+                        | 8-800-700-75-56
+                    .text
+                        | Звонок по России бесплатный
+                .phone
+                    .number
+                        | 8-495-755-1627
+                    .text
+                        | Звонок по Москве
+                //
+                    <div class="back-call">
+                    <a href="#">Заказать обратный звонок</a>
+                    </div>
+            .header-info
+                form.search(action='/search' method='get' style='margin-left:0')
+                    input(type='text' name='q' placeholder='артикул или модель' value='')
+                    input(type='submit' value='')
+        // Основное меню
+        .container.main-menu-container
+            nav.navbar.navbar-default.main-menu
+                ul.nav.navbar-nav.flex
+                    li.first
+                        a(href='/massazhnoe-oborudovanie') Массажное оборудование
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/904/3865.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-kresla') Массажные кресла
+                            li
+                                .menu-item
+                                    a.second(href='/massazhery') Массажеры
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-nakidki') Массажные накидки
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-podushki') Массажные подушки
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-krovati') Массажные кровати
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnyy-kabinet') Массажный кабинет
+                                    ul
+                                        li
+                                            a.third(href='/massazhnye-stoly') Массажные столы
+                                        li
+                                            a.third(href='/aksessuary-dlya-massazhista') Аксессуары для массажиста
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-tapochki') Массажные тапочки
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-kovriki') Массажные коврики
+                            li
+                                .menu-item
+                                    a.second(href='/massazhnye-maty') Массажные маты
+                    li.first
+                        a(href='/dom-i-ofis') Дом и офис
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/769/3866.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/mebel') Мебель
+                                    ul
+                                        li
+                                            a.third(href='/kompyuternye-kresla') Компьютерные и офисные кресла
+                                        li
+                                            a.third(href='/kompjuternie-stoly') Компьютерные столы
+                                        li
+                                            a.third(href='/kresla-dlya-otdyha') Кресла для отдыха
+                                        li
+                                            a.third(href='/kresla-reklaynery') Кресла-реклайнеры
+                            li
+                                .menu-item
+                                    a.second(href='/osveschenie') Освещение
+                                    ul
+                                        li
+                                            a.third(href='/solyanye-lampy') Соляные лампы
+                                        li
+                                            a.third(href='/nastolnye-lampy') Настольные лампы
+                            li
+                                .menu-item
+                                    a.second(href='/kaminy') Камины
+                                    ul
+                                        li
+                                            a.third(href='/elektrokaminy') Электрокамины
+                                        li
+                                            a.third(href='/ochagi') Очаги
+                                        li
+                                            a.third(href='/portaly') Порталы
+                                        li
+                                            a.third(href='/biokaminy') Биокамины
+                            li
+                                .menu-item
+                                    a.second(href='/aksessuary') Аксессуары
+                                    ul
+                                        li
+                                            a.third(href='/gadzhety') Гаджеты
+                            li
+                                .menu-item
+                                    a.second(href='/klimaticheskaya-tehnika') Климатическая техника
+                                    ul
+                                        li
+                                            a.third(href='/uvlazhniteli-vozduha') Увлажнители воздуха
+                                        li
+                                            a.third(href='/avtonomnye-kondicionery') Автономные кондиционеры
+                    li.first
+                        a(href='/trenazhery') Тренажеры
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/442/3867.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/silovye-trenazhery') Силовые тренажеры
+                                    ul
+                                        li
+                                            a.third(href='/mnogofunkcionalnye-trenazhery') Многофункциональные тренажеры
+                                        li
+                                            a.third(href='/pod-sobstvennym-vesom') Под собственным весом
+                                        li
+                                            a.third(href='/blochnye-trenazhery') Блочные тренажеры
+                                        li
+                                            a.third(href='/trenazherny-so-svobodnymi-vesami') Тренажеры со свободными весами
+                                        li
+                                            a.third(href='/gidravlicheskie-trenazhjory') Гидравлические тренажеры
+                                        li
+                                            a.third(href='/opcii-k-trenazheram') Опции к тренажерам
+                                        li
+                                            a.third(href='/powerlifting') Оборудование для пауэрлифтинга
+                            li
+                                .menu-item
+                                    a.second(href='/inversija-i-rastjazhka') Инверсия и растяжка
+                                    ul
+                                        li
+                                            a.third(href='/sving-mashiny') Свинг-машины
+                                        li
+                                            a.third(href='/inversionnye-stoly') Инверсионные столы
+                            li
+                                .menu-item
+                                    a.second(href='/aksessuary-dlja-trenazherov') Аксессуары для тренажеров
+                                    ul
+                                        li
+                                            a.third(href='/besprovodnye-kardiodatchiki') Беспроводные кардиодатчики
+                                        li
+                                            a.third(href='/kovriki-dlja-trenazherov') Коврики для тренажеров
+                            li
+                                .menu-item
+                                    a.second(href='/kardiotrenazhery') Кардиотренажеры
+                                    ul
+                                        li
+                                            a.third(href='/begovye-dorozhki') Беговые дорожки
+                                        li
+                                            a.third(href='/ellipticheskie-trenazhery') Эллиптические тренажеры
+                                        li
+                                            a.third(href='/velotrenazhery') Велотренажеры
+                                        li
+                                            a.third(href='/steppery') Степперы
+                                        li
+                                            a.third(href='/grebnye-trenazhery') Гребные тренажеры
+                            li
+                                .menu-item
+                                    a.second(href='/oborudovanie-dlja-fitnesa') Оборудование для фитнеса
+                                    ul
+                                        li
+                                            a.third(href='/vibroplatformy') Виброплатформы
+                                        li
+                                            a.third(href='/vibromassazhery') Вибромассажеры
+                                        li
+                                            a.third(href='/fitnes-trenazhery') Фитнес-тренажеры
+                                        li
+                                            a.third(href='/vibroganteli') Виброгантели
+                                        li
+                                            a.third(href='/jespandery') Эспандеры
+                            li
+                                .menu-item
+                                    a.second(href='/edinoborstva') Единоборства
+                                    ul
+                                        li
+                                            a.third(href='/vodonalivnye-trenazhery') Водоналивные тренажеры
+                                        li
+                                            a.third(href='/bokserskie-meshki') Боксерские мешки
+                                        li
+                                            a.third(href='/sparring-manekeny') Спарринг-манекены
+                            li
+                                .menu-item
+                                    a.second(href='/ippotrenazher') Иппотренажеры
+                    li.first
+                        a(href='/aktivnyj-otdyh') Активный отдых
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/995/3868.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/batuty') Батуты
+                            li
+                                .menu-item
+                                    a.second(href='/opticheskie-pribory') Оптические приборы
+                                    ul
+                                        li
+                                            a.third(href='/binokli-i-zritelnye-truby') Бинокли и зрительные трубы
+                                        li
+                                            a.third(href='/mikroskopy') Микроскопы
+                                        li
+                                            a.third(href='/teleskopy') Телескопы
+                            li
+                                .menu-item
+                                    a.second(href='/basketbolnye-stojki') Баскетбольные стойки
+                            li
+                                .menu-item
+                                    a.second(href='/transport') Транспорт
+                                    ul
+                                        li
+                                            a.third(href='/velosipedy') Велосипеды
+                            li
+                                .menu-item
+                                    a.second(href='/turizm-i-otdyh-na-prirode') Туризм и отдых на природе
+                                    ul
+                                        li
+                                            a.third(href='/sumki-holodilniki') Сумки-холодильники
+                                        li
+                                            a.third(href='/tenty') Тенты
+                                        li
+                                            a.third(href='/lodki') Лодки
+                                        li
+                                            a.third(href='/palatki') Палатки
+                                        li
+                                            a.third(href='/spalnye-meshki') Спальные мешки
+                                        li
+                                            a.third(href='/turisticheskie-ryukzaki') Туристические рюкзаки
+                            li
+                                .menu-item
+                                    a.second(href='/tennisnye-stoly') Теннисные столы
+                            li
+                                .menu-item
+                                    a.second(href='/basseyny') Бассейны
+                            li
+                                .menu-item
+                                    a.second(href='/sportivnye-kompleksy') Спортивные комплексы
+                    li.first
+                        a(href='/dacha-i-sad') Дача и сад
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/1015/3869.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/banya-i-sauna') Баня и сауна
+                                    ul
+                                        li
+                                            a.third(href='/infrakrasnye-sauny') Инфракрасные сауны
+                            li
+                                .menu-item
+                                    a.second(href='/mebel-dlja-dachi') Мебель для дачи
+                    li.first
+                        a(href='/dlya-detey') Для детей
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/887/3870.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/nastolnye-igry') Настольные игры
+                                    ul
+                                        li
+                                            a.third(href='/nastolnyy-futbol') Настольный футбол
+                                        li
+                                            a.third(href='/nastolnyy-hokkey') Настольный хоккей
+                                        li
+                                            a.third(href='/aerohokkey') Аэрохоккей
+                                        li
+                                            a.third(href='/stoly-transformery') Столы-трансформеры
+                            li
+                                .menu-item
+                                    a.second(href='/igry-na-svezhem-vozduhe') Игры на свежем воздухе
+                                    ul
+                                        li
+                                            a.third(href='/igry-s-myachom') Игры с мячом
+                                        li
+                                            a.third(href='/naduvnie-batuty') Надувные батуты
+                            li
+                                .menu-item
+                                    a.second(href='/detskij-transport') Детский транспорт
+                                    ul
+                                        li
+                                            a.third(href='/velomobili') Веломобили
+                            li
+                                .menu-item
+                                    a.second(href='/tovary-dlya-shkoly') Товары для школы
+                                    ul
+                                        li
+                                            a.third(href='/aksessuary-dlya-ucheby') Аксессуары для учебы
+                            li
+                                .menu-item
+                                    a.second(href='/detskiy-sport') Детский спорт
+                                    ul
+                                        li
+                                            a.third(href='/detskie-sportivnye-kompleksy') Детские спортивные комплексы
+                            li
+                                .menu-item
+                                    a.second(href='/detskaya-mebel') Детская мебель
+                                    ul
+                                        li
+                                            a.third(href='/detskie-ortopedicheskie-kresla') Детские ортопедические кресла
+                                        li
+                                            a.third(href='/detskie-pismennye-stoly') Детские письменные столы
+                                        li
+                                            a.third(href='/shkafy') Шкафы
+                    li.first
+                        a(href='/kosmetologiya') Косметология
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/451/3871.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/kosmetologicheskie-apparaty') Косметологические аппараты
+                                    ul
+                                        li
+                                            a.third(href='/miostimulyatory') Миостимуляторы
+                                        li
+                                            a.third(href='/apparaty-dlya-dermabrazii') Аппараты для дермабразии
+                                        li
+                                            a.third(href='/apparaty-dlya-mezoterapii') Аппараты для мезотерапии
+                                        li
+                                            a.third(href='/apparaty-dlya-ultrazvukovoy-terapii') Аппараты для ультразвуковой терапии
+                                        li
+                                            a.third(href='/apparaty-dlya-rf-liftinga') Аппараты для RF-лифтинга
+                                        li
+                                            a.third(href='/apparaty-dlya-mikrotokovoy-terapii') Аппараты для микротоковой терапии
+                                        li
+                                            a.third(href='/epilyatory') Аппараты для эпиляции и депиляции
+                                        li
+                                            a.third(href='/apparaty-dlya-vakuumnogo-massazha') Аппараты для вакуумного массажа
+                                        li
+                                            a.third(href='/apparaty-dlya-limfodrenazha-i-pressoterapii') Аппараты для лимфодренажа и прессотерапии
+                                        li
+                                            a.third(href='/vaporizatory') Вапоризаторы
+                                        li
+                                            a.third(href='/mnogofunkcionalnye-apparaty') Многофункциональные аппараты
+                                        li
+                                            a.third(href='/darsonval') Дарсонвали
+                                        li
+                                            a.third(href='/kosmetologicheskie-apparaty-s-odnoj-funkciej') Косметологические аппараты с одной функцией
+                                        li
+                                            a.third(href='/apparaty-dlja-pilinga') Аппараты для пилинга
+                                        li
+                                            a.third(href='/apparaty-dlja-fisioterapii') Аппараты для физиотерапии
+                            li
+                                .menu-item
+                                    a.second(href='/oborudovanie-dlya-kabineta-kosmetologa') Оборудование для кабинета косметолога
+                                    ul
+                                        li
+                                            a.third(href='/stulya-dlya-masterov') Стулья для мастеров
+                                        li
+                                            a.third(href='/kosmetologicheskie-telezhki-i-stoliki') Косметологические тележки и столики
+                                        li
+                                            a.third(href='/podogrevateli-polotenec') Подогреватели полотенец
+                                        li
+                                            a.third(href='/kosmetologicheskie-kushetki-i-kresla') Косметологические кушетки и кресла
+                                        li
+                                            a.third(href='/lampy-lupy') Лампы-лупы
+                            li
+                                .menu-item
+                                    a.second(href='/aksessuary-dlya-kosmetologii') Аксессуары для косметологии
+                                    ul
+                                        li
+                                            a.third(href='/termoodeyalo') Термоодеяла
+                            li
+                                .menu-item
+                                    a.second(href='/oborudovanie-dlya-manikyura-i-pedikyura') Оборудование для маникюра и педикюра
+                                    ul
+                                        li
+                                            a.third(href='/gidromassazhnye-vannochki') Гидромассажные ванночки
+                                        li
+                                            a.third(href='/stoly-dlya-manikyura') Столы для маникюра
+                                        li
+                                            a.third(href='/manikyurno-pedikyurnoe-oborudovanie') Маникюрно-педикюрное оборудование
+                                        li
+                                            a.third(href='/pedikyurnye-kresla') Педикюрные кресла
+                            li
+                                .menu-item
+                                    a.second(href='/oborudovanie-dlya-parikmaherskoy') Оборудование для парикмахерской
+                                    ul
+                                        li
+                                            a.third(href='/moyki-parikmaherskie') Мойки парикмахерские
+                                        li
+                                            a.third(href='/kresla-parikmaherskie') Кресла парикмахерские
+                                        li
+                                            a.third(href='/rabochie-mesta-i-polki') Рабочие места и полки
+                                        li
+                                            a.third(href='/detskie-stulchiki-parikmaherskie') Детские стульчики парикмахерские
+                            li
+                                .menu-item
+                                    a.second(href='/oborudovanie-dlya-sterilizacii-i-dezinfekcii') Оборудование для стерилизации и дезинфекции
+                    li.first
+                        a(href='/medtehnika') Медтехника
+                        span.firsr-icon(style="background-image: url('/uploads/files/topicicon/474/3872.svg');")
+                        ul.menu-sub
+                            li
+                                .menu-item
+                                    a.second(href='/invalidnye-kresla') Инвалидные кресла
+                            li
+                                .menu-item
+                                    a.second(href='/kislorodnoe-oborudovanie') Кислородное оборудование
+                            li
+                                .menu-item
+                                    a.second(href='/ortopedicheskie-korsety') Корсеты
+                            li
+                                .menu-item
+                                    a.second(href='/ekomobili') Экомобили
+                    li.first
+                        a(href='/site/discount') Распродажа

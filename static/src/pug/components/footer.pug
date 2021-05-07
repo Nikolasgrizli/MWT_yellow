@@ -1,0 +1,96 @@
+mixin footer(data)
+    - data = data || {}
+    //- -
+    //-     var copyText = t('copyright')
+    //-     var footerLinks = _lara ? _footerLinks : [
+    //-         {url: '#', text: 'Wedstrijdreglement', isActive: true, external: true},
+    //-         {url: '#', text: 'Gebruiksvoorwaarden', isActive: false, external: true},
+    //-         {url: '#', text: 'Privacybeleid', name: false, external: true},
+    //-         {url: '#', text: 'Cookie beleid', name: false, external: true},
+    //-     ]
+
+
+    //- .footer(class={'footer_white-right': headerWhiteRight})
+    //-     .footer__container
+    //-         .footer__copy!=copyText
+    //-         .footer__nav
+    //-             ul
+    //-                 each footerLink in footerLinks
+    //-                     li
+    //-                         a(
+    //-                             href=footerLink.url,
+    //-                             class!= {'is-active' : footerLink.isActive},
+    //-                             target= footerLink.external ? "_blank" : "_self",
+    //-                         )!=footerLink.text
+
+
+    footer.footer
+        .container
+            .row.top-line
+                .col-md-6
+                    .main-page-social-widget
+                        // VK Widget
+                        #vk_groups
+                .col-md-3.footer-payments
+                    div
+                        strong Мы принимаем к оплате
+                        br
+                        img(src='images/payments/visa.png')
+                        img(src='images/payments/mastercard.png')
+                        img(src='images/payments/mir.jpg')
+                    div
+                        strong Рассрочка
+                        br
+                        img(src='images/payments/russkiy-standart.png')
+                        img(src='images/payments/otp.png')
+                        img(src='images/payments/alfa-bank.jpg')
+                .col-md-3.contacts.contacts-footer
+                    .phone-icon
+                        .phone-icon-text
+                            | Ежедневно
+                    .phone
+                        .number
+                            | 8-800-700-75-56
+                        .text
+                            | Звонок по России бесплатный
+                    .phone
+                        .number
+                            | 8-495-755-1627
+                        .text
+                            | Звонок по Москве
+                    //
+                        <div class="back-call">
+                        <a href="#">Заказать обратный звонок</a>
+                        </div>
+                    //- .market
+                    //-     a(href='https://clck.yandex.ru/redir/dtype=stred/pid=47/cid=2508/*https://market.yandex.ru/shop/98567/reviews')
+                    //-         img(src='https://clck.yandex.ru/redir/dtype=stred/pid=47/cid=2507/*https://grade.market.yandex.ru/?id=98567&action=image&size=2' border='0' width='150' height='101' alt='Читайте отзывы покупателей и оценивайте качество магазина на Яндекс.Маркете')
+        .footer-purple
+            .container
+                .row
+                    .col-md-4.footer-purple-icons
+                        span.footer-purple-icons-text Мы в соцсетях:
+                        a.icon.icon-facebook(href='https://www.facebook.com/mwt2013/' target='_blank')
+                        a.icon.icon-vk(href='https://vk.com/massagewellnesstechnology' target='_blank')
+                        a.icon.icon-mail(href='mailto: sale@mwt.ru')
+                        a.icon.icon-subscription(href='https://telegram.me/mwt_ru' target='_blank')
+                    .col-md-8
+                        .form-subscription-before
+                            .row
+                                form#form-subscription.form-inline.form-subscription(action='/site/subscription' method='POST')
+                                    input(type='hidden' name='_csrf' value='EprsXCtd9H275mHQO-FRkVVwGgtoHs8MpI7Iwxr5oqAl-5sJSAXGKIKyWYF5qiPwNz1bcV19-EWU-ImlYojk7A==')
+                                    .col-sm-5
+                                        .form-group.text
+                                            | Подпишись на акции и получи скидку 500 руб.!
+                                    .col-sm-6
+                                        .form-group
+                                            input.form-control.email.form-subscription-email(type='email' required='' name='email' placeholder='e-mail')
+                                        button.btn.btn-default(type='submit') подписаться
+                        .form-subscription-after.form-subscription
+                            .text
+        .footer-address
+            .container
+                .row
+                    a.privacy-policy(href='/uploads/Privacy_Policy.pdf' target='_blank') Политика конфиденциальности
+        //- script(type='text/javascript').
+        //-     (window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=rJejTxdRV6zx1yYGCnis/7hgq9V7PvmCa9iLz6akttS1xaWzP73d/HhFXWDfJKGUDxj5kYjmRUonhTVyoaV77Eo4X4zxuoS2NHOBVsc68hDch2lFoFDFde5lIL/S9WySaxT593Ffd/y6KgeFCp5JpjMl8ZWoWkClW/OaEmDOo-';
