@@ -141,6 +141,9 @@ block content
                     .nk-item__col
                         .nk-item__inner
                             .nk-item__title-mobile!=item.title
+                            if item.hit
+                                .nk-item__hit.nk-item__hit_mobile
+                                    img(src="img/badges/hit.svg", alt="Хит продаж")
                             .nk-item__offer!=item.offer
                             .nk-item__price.nk-price
                                 .nk-price__top
