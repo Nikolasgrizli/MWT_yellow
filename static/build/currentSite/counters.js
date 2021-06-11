@@ -1,1 +1,139 @@
-!function(a,e,t){(e[t]=e[t]||[]).push((function(){try{e.yaCounter13674487=new Ya.Metrika({id:13674487,clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0,ecommerce:"dataLayer"})}catch(a){}}));var r=a.getElementsByTagName("script")[0],n=a.createElement("script"),i=function(){r.parentNode.insertBefore(n,r)};n.type="text/javascript",n.async=!0,n.src="https://mc.yandex.ru/metrika/watch.js","[object Opera]"==e.opera?a.addEventListener("DOMContentLoaded",i,!1):i()}(document,window,"yandex_metrika_callbacks"),function(a,e,t,r,n,i,c){a.GoogleAnalyticsObject="ga",a.ga=a.ga||function(){(a.ga.q=a.ga.q||[]).push(arguments)},a.ga.l=1*new Date,i=e.createElement(t),c=e.getElementsByTagName(t)[0],i.async=1,i.src="//www.google-analytics.com/analytics.js",c.parentNode.insertBefore(i,c)}(window,document,"script"),ga("create","UA-54600840-1");var OpenStatParser={_params:{},_parsed:!1,_decode64:function(a){if("function"==typeof window.atob)return atob(a);var e,t,r,n,i,c,s="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",o=0,p=0,m=[];if(!a)return a;a+="";do{e=(c=s.indexOf(a.charAt(o++))<<18|s.indexOf(a.charAt(o++))<<12|(n=s.indexOf(a.charAt(o++)))<<6|(i=s.indexOf(a.charAt(o++))))>>16&255,t=c>>8&255,r=255&c,m[p++]=64==n?String.fromCharCode(e):64==i?String.fromCharCode(e,t):String.fromCharCode(e,t,r)}while(o<a.length);return m.join("")},_parse:function(){var a=window.location.search.substr(1).split("&");this._params={};for(var e=0;e<a.length;e++){var t=a[e].split("=");this._params[t[0]]=t[1]}this._parsed=!0},hasMarker:function(){return this._parsed||this._parse(),void 0!==this._params._openstat},buildCampaignParams:function(){if(!this.hasMarker())return!1;var a=this._decode64(this._params._openstat).split(";");utmcampaign=a[3],utmsource=a[0],utmcontent=a[2]}};if(OpenStatParser.hasMarker()){var campaignParams=OpenStatParser.buildCampaignParams();!1!==campaignParams&&ga("set",{campaignName:utmcampaign,campaignSource:utmsource,campaignMedium:"cpc",campaignContent:utmcontent})}ga("send","pageview"),function(a,e){var t,r;(a[e]=a[e]||[]).push({counter_id:430294216}),(t=document.createElement("script")).type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://":"http://")+"autocontext.begun.ru/analytics.js",(r=document.getElementsByTagName("script")[0]).parentNode.insertBefore(t,r)}(window,"begun_analytics_params");var rrPartnerId="581183a29872e58c24c7da0f",rrApi={},rrApiOnReady=rrApiOnReady||[];rrApi.addToBasket=rrApi.order=rrApi.categoryView=rrApi.view=rrApi.recomMouseDown=rrApi.recomAddToCart=function(){},function(a){var e,t=a.getElementsByTagName("script")[0],r="rrApi-jssdk";a.getElementById(r)||((e=a.createElement("script")).id=r,e.async=!0,e.src="//cdn.retailrocket.ru/content/javascript/tracking.js",t.parentNode.insertBefore(e,t))}(document);
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter13674487 = new Ya.Metrika({
+                id:13674487,
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true,
+                ecommerce:"dataLayer"
+            });
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-54600840-1');
+var OpenStatParser = {
+	_params: {},
+	_parsed: false,
+	_decode64: function(data) {
+		if (typeof window['atob'] === 'function') {
+			return atob(data);
+		}
+
+		var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+		var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+			ac = 0,
+			dec = "",
+			tmp_arr = [];
+
+		if (!data) {
+			return data;
+		}
+
+		data += '';
+
+		do {
+			h1 = b64.indexOf(data.charAt(i++));
+			h2 = b64.indexOf(data.charAt(i++));
+			h3 = b64.indexOf(data.charAt(i++));
+			h4 = b64.indexOf(data.charAt(i++));
+
+			bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
+
+			o1 = bits >> 16 & 0xff;
+			o2 = bits >> 8 & 0xff;
+			o3 = bits & 0xff;
+
+			if (h3 == 64) {
+				tmp_arr[ac++] = String.fromCharCode(o1);
+			} else if (h4 == 64) {
+				tmp_arr[ac++] = String.fromCharCode(o1, o2);
+			} else {
+				tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+			}
+		} while (i < data.length);
+
+		dec = tmp_arr.join('');
+
+		return dec;
+	},
+	_parse: function() {
+		var prmstr = window.location.search.substr(1);
+		var prmarr = prmstr.split('&');
+		this._params = {};
+
+		for (var i = 0; i < prmarr.length; i++) {
+			var tmparr = prmarr[i].split('=');
+			this._params[tmparr[0]] = tmparr[1];
+		}
+
+		this._parsed = true;
+	},
+	hasMarker: function() {
+		if (!this._parsed) {
+			this._parse();
+		}
+		return (typeof this._params['_openstat'] !== 'undefined') ? true : false;
+	},
+	buildCampaignParams: function() {
+		if (!this.hasMarker()) {
+			return false;
+		}
+		var openstat = this._decode64(this._params['_openstat']);
+		var statarr = openstat.split(';');
+		utmcampaign = statarr[3];
+		utmsource = statarr[0];
+		utmcontent = statarr[2];
+	}
+}
+if (OpenStatParser.hasMarker()) {
+	var campaignParams = OpenStatParser.buildCampaignParams();
+	if (campaignParams !== false) {
+		ga('set', {'campaignName': utmcampaign, 'campaignSource': utmsource, 'campaignMedium': 'cpc', 'campaignContent': utmcontent});
+	}
+}
+ga('send', 'pageview');
+
+(function(w, p) {
+	var a, s;
+	(w[p] = w[p] || []).push({
+		counter_id: 430294216
+	});
+	a = document.createElement('script'); a.type = 'text/javascript'; a.async = true;
+	a.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'autocontext.begun.ru/analytics.js';
+	s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(a, s);
+})(window, 'begun_analytics_params');
+
+var rrPartnerId = "581183a29872e58c24c7da0f";
+var rrApi = {};
+var rrApiOnReady = rrApiOnReady || [];
+rrApi.addToBasket = rrApi.order = rrApi.categoryView = rrApi.view =
+rrApi.recomMouseDown = rrApi.recomAddToCart = function() {};
+(function(d) {
+var ref = d.getElementsByTagName('script')[0];
+var apiJs, apiJsId = 'rrApi-jssdk';
+if (d.getElementById(apiJsId)) return;
+apiJs = d.createElement('script');
+apiJs.id = apiJsId;
+apiJs.async = true;
+apiJs.src = "//cdn.retailrocket.ru/content/javascript/tracking.js";
+ref.parentNode.insertBefore(apiJs, ref);
+}(document));

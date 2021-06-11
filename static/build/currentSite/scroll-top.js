@@ -1,2 +1,26 @@
-/*! For license information please see scroll-top.js.LICENSE.txt */
-$((function(){var o=$("#btn-top-scroller"),l=$("html, body").offset().top+150;$(document).on("scroll",(function(){var n=$(window).scrollTop();n>l&&!o.is(":visible")?o.fadeIn():n<l&&o.is(":visible")&&o.fadeOut()})).scroll(),o.on("click",(function(o){o.preventDefault(),$("html, body").animate({scrollTop:0},300)}))}));
+/**
+ * @link      https://github.com/bluezed/yii2-scroll-top
+ * @copyright Copyright (c) 2015 Thomas Geppert
+ * @license   https://github.com/bluezed/yii2-scroll-top/blob/master/LICENSE
+ */
+
+$(function(){  
+    
+    var btnScroller = $('#btn-top-scroller');
+    var scrollerTriggerPoint = $('html, body').offset().top + 150;
+
+    $(document).on('scroll', function() {
+        var pos = $(window).scrollTop();
+        if (pos > scrollerTriggerPoint && !btnScroller.is(':visible')) {
+            btnScroller.fadeIn();
+        } else if (pos < scrollerTriggerPoint && btnScroller.is(':visible')) {
+            btnScroller.fadeOut();
+        }
+    }).scroll();
+
+    btnScroller.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, 300);
+    });
+    
+});

@@ -1,2 +1,533 @@
-/*! For license information please see yii.js.LICENSE.txt */
-window.yii=function(t){var e={reloadableScripts:[],clickableSelector:'a, button, input[type="submit"], input[type="button"], input[type="reset"], input[type="image"]',changeableSelector:"select, input, textarea",getCsrfParam:function(){return t("meta[name=csrf-param]").attr("content")},getCsrfToken:function(){return t("meta[name=csrf-token]").attr("content")},setCsrfToken:function(e,i){t("meta[name=csrf-param]").attr("content",e),t("meta[name=csrf-token]").attr("content",i)},refreshCsrfToken:function(){var i=e.getCsrfToken();i&&t('form input[name="'+e.getCsrfParam()+'"]').val(i)},confirm:function(t,e,i){window.confirm(t)?!e||e():!i||i()},handleAction:function(i,n){var r,a=i.attr("data-form")?t("#"+i.attr("data-form")):i.closest("form"),o=!i.data("method")&&a?a.attr("method"):i.data("method"),c=i.attr("href"),s=c&&"#"!==c,d=i.data("params"),u=d&&t.isPlainObject(d),l=i.data("pjax"),p=void 0!==l&&0!==l&&t.support.pjax,f={};if(t.each(["submit","reset","elements","length","name","acceptCharset","action","enctype","method","target"],(function(t,e){u&&d.hasOwnProperty(e)&&console.error("Parameter name '"+e+"' conflicts with a same named form property. Please use another name.")})),p&&(void 0!==(r=i.data("pjax-container"))&&r.length||(r=i.closest("[data-pjax-container]").attr("id")?"#"+i.closest("[data-pjax-container]").attr("id"):""),r.length||(r="body"),f={container:r,push:!!i.data("pjax-push-state"),replace:!!i.data("pjax-replace-state"),scrollTo:i.data("pjax-scrollto"),pushRedirect:i.data("pjax-push-redirect"),replaceRedirect:i.data("pjax-replace-redirect"),skipOuterContainers:i.data("pjax-skip-outer-containers"),timeout:i.data("pjax-timeout"),originalEvent:n,originalTarget:i}),void 0!==o){var m,h,g=!a.length;if(g){s||(c=e.getCurrentUrl()),a=t("<form/>",{method:o,action:c});var v=i.attr("target");if(v&&a.attr("target",v),/(get|post)/i.test(o)||(a.append(t("<input/>",{name:"_method",value:o,type:"hidden"})),o="post",a.attr("method",o)),/post/i.test(o)){var y=e.getCsrfParam();y&&a.append(t("<input/>",{name:y,value:e.getCsrfToken(),type:"hidden"}))}a.hide().appendTo("body")}else m=a.attr("method"),a.attr("method",o),s&&(h=a.attr("action"),a.attr("action",c));var x=a.data("yiiActiveForm");x&&(x.submitObject=i),u&&t.each(d,(function(e,i){a.append(t("<input/>").attr({name:e,value:i,type:"hidden"}))})),p&&a.on("submit",(function(e){t.pjax.submit(e,f)})),a.trigger("submit"),t.when(a.data("yiiSubmitFinalizePromise")).done((function(){g?a.remove():(void 0!==h&&a.attr("action",h),a.attr("method",m),u&&t.each(d,(function(e){t('input[name="'+e+'"]',a).remove()})))}))}else s?p?t.pjax.click(n,f):window.location.assign(c):i.is(":submit")&&a.length&&(p&&a.on("submit",(function(e){t.pjax.submit(e,f)})),a.trigger("submit"))},getQueryParams:function(e){var i=e.indexOf("?");if(i<0)return{};for(var n=t.grep(e.substring(i+1).split("#")[0].split("&"),(function(t){return""!==t})),r={},a=0,o=n.length;a<o;a++){var c=n[a].split("="),s=decodeURIComponent(c[0].replace(/\+/g,"%20")),d=decodeURIComponent(c[1].replace(/\+/g,"%20"));s.length&&(void 0===r[s]?r[s]=d||"":(t.isArray(r[s])||(r[s]=[r[s]]),r[s].push(d||"")))}return r},initModule:function(i){(void 0===i.isActive||i.isActive)&&(t.isFunction(i.init)&&i.init(),t.each(i,(function(){t.isPlainObject(this)&&e.initModule(this)})))},init:function(){var r,a;t.ajaxPrefilter((function(t,i,n){!t.crossDomain&&e.getCsrfParam()&&n.setRequestHeader("X-CSRF-Token",e.getCsrfToken())})),e.refreshCsrfToken(),t(document).ajaxComplete((function(t,e){var i=e&&e.getResponseHeader("X-Redirect");i&&window.location.assign(i)})),r={},t("script[src]").each((function(){var t=n(this.src);r[t]=!0})),t.ajaxPrefilter("script",(function(t,e,a){if("jsonp"!=t.dataType){var o=n(t.url),c=!0===r[o]&&!i(o),s=void 0!==r[o]&&!0===r[o].xhrDone;c||s?a.abort():(void 0!==r[o]&&!0!==r[o]||(r[o]={xhrList:[],xhrDone:!1}),a.done((function(t,e,i){if(!0!==r[i.yiiUrl].xhrDone){r[i.yiiUrl].xhrDone=!0;for(var n=0,a=r[i.yiiUrl].xhrList.length;n<a;n++){var o=r[i.yiiUrl].xhrList[n];o&&o.readyState!==XMLHttpRequest.DONE&&o.abort()}r[i.yiiUrl]=!0}})).fail((function(t,e){if("abort"!==e){delete r[t.yiiUrl].xhrList[t.yiiIndex];for(var i=!0,n=0,a=r[t.yiiUrl].xhrList.length;n<a;n++)r[t.yiiUrl].xhrList[n]&&(i=!1);i&&delete r[t.yiiUrl]}})),a.yiiIndex=r[o].xhrList.length,a.yiiUrl=o,r[o].xhrList[a.yiiIndex]=a)}})),t(document).ajaxComplete((function(){var e=[];t("link[rel=stylesheet]").each((function(){var r=n(this.href);i(r)||(-1===t.inArray(r,e)?e.push(r):t(this).remove())}))})),a=function(i){var n=t(this),r=n.data("method"),a=n.data("confirm"),o=n.data("form");return void 0===r&&void 0===a&&void 0===o||(void 0!==a&&!1!==a&&""!==a?t.proxy(e.confirm,this)(a,(function(){e.handleAction(n,i)})):e.handleAction(n,i),i.stopImmediatePropagation(),!1)},t(document).on("click.yii",e.clickableSelector,a).on("change.yii",e.changeableSelector,a)},getBaseCurrentUrl:function(){return window.location.protocol+"//"+window.location.host},getCurrentUrl:function(){return window.location.href}};function i(t){for(var i=0;i<e.reloadableScripts.length;i++){var r=n(e.reloadableScripts[i]);if(!0===new RegExp("^"+(a=r,a.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,"\\$&")).split("\\*").join(".+")+"$").test(t))return!0}var a;return!1}function n(t){return"/"===t.charAt(0)?e.getBaseCurrentUrl()+t:t}return e}(window.jQuery),window.jQuery((function(){window.yii.initModule(window.yii)}));
+/**
+ * Yii JavaScript module.
+ *
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
+
+/**
+ * yii is the root module for all Yii JavaScript modules.
+ * It implements a mechanism of organizing JavaScript code in modules through the function "yii.initModule()".
+ *
+ * Each module should be named as "x.y.z", where "x" stands for the root module (for the Yii core code, this is "yii").
+ *
+ * A module may be structured as follows:
+ *
+ * ```javascript
+ * window.yii.sample = (function($) {
+ *     var pub = {
+ *         // whether this module is currently active. If false, init() will not be called for this module
+ *         // it will also not be called for all its child modules. If this property is undefined, it means true.
+ *         isActive: true,
+ *         init: function() {
+ *             // ... module initialization code goes here ...
+ *         },
+ *
+ *         // ... other public functions and properties go here ...
+ *     };
+ *
+ *     // ... private functions and properties go here ...
+ *
+ *     return pub;
+ * })(window.jQuery);
+ * ```
+ *
+ * Using this structure, you can define public and private functions/properties for a module.
+ * Private functions/properties are only visible within the module, while public functions/properties
+ * may be accessed outside of the module. For example, you can access "yii.sample.isActive".
+ *
+ * You must call "yii.initModule()" once for the root module of all your modules.
+ */
+window.yii = (function ($) {
+    var pub = {
+        /**
+         * List of JS or CSS URLs that can be loaded multiple times via AJAX requests.
+         * Each item may be represented as either an absolute URL or a relative one.
+         * Each item may contain a wildcard matching character `*`, that means one or more
+         * any characters on the position. For example:
+         *  - `/css/*.css` will match any file ending with `.css` in the `css` directory of the current web site
+         *  - `http*://cdn.example.com/*` will match any files on domain `cdn.example.com`, loaded with HTTP or HTTPS
+         *  - `/js/myCustomScript.js?realm=*` will match file `/js/myCustomScript.js` with defined `realm` parameter
+         */
+        reloadableScripts: [],
+        /**
+         * The selector for clickable elements that need to support confirmation and form submission.
+         */
+        clickableSelector: 'a, button, input[type="submit"], input[type="button"], input[type="reset"], ' +
+            'input[type="image"]',
+        /**
+         * The selector for changeable elements that need to support confirmation and form submission.
+         */
+        changeableSelector: 'select, input, textarea',
+
+        /**
+         * @return string|undefined the CSRF parameter name. Undefined is returned if CSRF validation is not enabled.
+         */
+        getCsrfParam: function () {
+            return $('meta[name=csrf-param]').attr('content');
+        },
+
+        /**
+         * @return string|undefined the CSRF token. Undefined is returned if CSRF validation is not enabled.
+         */
+        getCsrfToken: function () {
+            return $('meta[name=csrf-token]').attr('content');
+        },
+
+        /**
+         * Sets the CSRF token in the meta elements.
+         * This method is provided so that you can update the CSRF token with the latest one you obtain from the server.
+         * @param name the CSRF token name
+         * @param value the CSRF token value
+         */
+        setCsrfToken: function (name, value) {
+            $('meta[name=csrf-param]').attr('content', name);
+            $('meta[name=csrf-token]').attr('content', value);
+        },
+
+        /**
+         * Updates all form CSRF input fields with the latest CSRF token.
+         * This method is provided to avoid cached forms containing outdated CSRF tokens.
+         */
+        refreshCsrfToken: function () {
+            var token = pub.getCsrfToken();
+            if (token) {
+                $('form input[name="' + pub.getCsrfParam() + '"]').val(token);
+            }
+        },
+
+        /**
+         * Displays a confirmation dialog.
+         * The default implementation simply displays a js confirmation dialog.
+         * You may override this by setting `yii.confirm`.
+         * @param message the confirmation message.
+         * @param ok a callback to be called when the user confirms the message
+         * @param cancel a callback to be called when the user cancels the confirmation
+         */
+        confirm: function (message, ok, cancel) {
+            if (window.confirm(message)) {
+                !ok || ok();
+            } else {
+                !cancel || cancel();
+            }
+        },
+
+        /**
+         * Handles the action triggered by user.
+         * This method recognizes the `data-method` attribute of the element. If the attribute exists,
+         * the method will submit the form containing this element. If there is no containing form, a form
+         * will be created and submitted using the method given by this attribute value (e.g. "post", "put").
+         * For hyperlinks, the form action will take the value of the "href" attribute of the link.
+         * For other elements, either the containing form action or the current page URL will be used
+         * as the form action URL.
+         *
+         * If the `data-method` attribute is not defined, the `href` attribute (if any) of the element
+         * will be assigned to `window.location`.
+         *
+         * Starting from version 2.0.3, the `data-params` attribute is also recognized when you specify
+         * `data-method`. The value of `data-params` should be a JSON representation of the data (name-value pairs)
+         * that should be submitted as hidden inputs. For example, you may use the following code to generate
+         * such a link:
+         *
+         * ```php
+         * use yii\helpers\Html;
+         * use yii\helpers\Json;
+         *
+         * echo Html::a('submit', ['site/foobar'], [
+         *     'data' => [
+         *         'method' => 'post',
+         *         'params' => [
+         *             'name1' => 'value1',
+         *             'name2' => 'value2',
+         *         ],
+         *     ],
+         * ]);
+         * ```
+         *
+         * @param $e the jQuery representation of the element
+         * @param event Related event
+         */
+        handleAction: function ($e, event) {
+            var $form = $e.attr('data-form') ? $('#' + $e.attr('data-form')) : $e.closest('form'),
+                method = !$e.data('method') && $form ? $form.attr('method') : $e.data('method'),
+                action = $e.attr('href'),
+                isValidAction = action && action !== '#',
+                params = $e.data('params'),
+                areValidParams = params && $.isPlainObject(params),
+                pjax = $e.data('pjax'),
+                usePjax = pjax !== undefined && pjax !== 0 && $.support.pjax,
+                pjaxContainer,
+                pjaxOptions = {},
+                conflictParams = ['submit', 'reset', 'elements', 'length', 'name', 'acceptCharset',
+                    'action', 'enctype', 'method', 'target'];
+
+            // Forms and their child elements should not use input names or ids that conflict with properties of a form,
+            // such as submit, length, or method.
+            $.each(conflictParams, function (index, param) {
+                if (areValidParams && params.hasOwnProperty(param)) {
+                    console.error("Parameter name '" + param + "' conflicts with a same named form property. " +
+                        "Please use another name.");
+                }
+            });
+
+            if (usePjax) {
+                pjaxContainer = $e.data('pjax-container');
+                if (pjaxContainer === undefined || !pjaxContainer.length) {
+                    pjaxContainer = $e.closest('[data-pjax-container]').attr('id')
+                        ? ('#' + $e.closest('[data-pjax-container]').attr('id'))
+                        : '';
+                }
+                if (!pjaxContainer.length) {
+                    pjaxContainer = 'body';
+                }
+                pjaxOptions = {
+                    container: pjaxContainer,
+                    push: !!$e.data('pjax-push-state'),
+                    replace: !!$e.data('pjax-replace-state'),
+                    scrollTo: $e.data('pjax-scrollto'),
+                    pushRedirect: $e.data('pjax-push-redirect'),
+                    replaceRedirect: $e.data('pjax-replace-redirect'),
+                    skipOuterContainers: $e.data('pjax-skip-outer-containers'),
+                    timeout: $e.data('pjax-timeout'),
+                    originalEvent: event,
+                    originalTarget: $e
+                };
+            }
+
+            if (method === undefined) {
+                if (isValidAction) {
+                    usePjax ? $.pjax.click(event, pjaxOptions) : window.location.assign(action);
+                } else if ($e.is(':submit') && $form.length) {
+                    if (usePjax) {
+                        $form.on('submit', function (e) {
+                            $.pjax.submit(e, pjaxOptions);
+                        });
+                    }
+                    $form.trigger('submit');
+                }
+                return;
+            }
+
+            var oldMethod,
+                oldAction,
+                newForm = !$form.length;
+            if (!newForm) {
+                oldMethod = $form.attr('method');
+                $form.attr('method', method);
+                if (isValidAction) {
+                    oldAction = $form.attr('action');
+                    $form.attr('action', action);
+                }
+            } else {
+                if (!isValidAction) {
+                    action = pub.getCurrentUrl();
+                }
+                $form = $('<form/>', {method: method, action: action});
+                var target = $e.attr('target');
+                if (target) {
+                    $form.attr('target', target);
+                }
+                if (!/(get|post)/i.test(method)) {
+                    $form.append($('<input/>', {name: '_method', value: method, type: 'hidden'}));
+                    method = 'post';
+                    $form.attr('method', method);
+                }
+                if (/post/i.test(method)) {
+                    var csrfParam = pub.getCsrfParam();
+                    if (csrfParam) {
+                        $form.append($('<input/>', {name: csrfParam, value: pub.getCsrfToken(), type: 'hidden'}));
+                    }
+                }
+                $form.hide().appendTo('body');
+            }
+
+            var activeFormData = $form.data('yiiActiveForm');
+            if (activeFormData) {
+                // Remember the element triggered the form submission. This is used by yii.activeForm.js.
+                activeFormData.submitObject = $e;
+            }
+
+            if (areValidParams) {
+                $.each(params, function (name, value) {
+                    $form.append($('<input/>').attr({name: name, value: value, type: 'hidden'}));
+                });
+            }
+
+            if (usePjax) {
+                $form.on('submit', function (e) {
+                    $.pjax.submit(e, pjaxOptions);
+                });
+            }
+
+            $form.trigger('submit');
+
+            $.when($form.data('yiiSubmitFinalizePromise')).done(function () {
+                if (newForm) {
+                    $form.remove();
+                    return;
+                }
+
+                if (oldAction !== undefined) {
+                    $form.attr('action', oldAction);
+                }
+                $form.attr('method', oldMethod);
+
+                if (areValidParams) {
+                    $.each(params, function (name) {
+                        $('input[name="' + name + '"]', $form).remove();
+                    });
+                }
+            });
+        },
+
+        getQueryParams: function (url) {
+            var pos = url.indexOf('?');
+            if (pos < 0) {
+                return {};
+            }
+
+            var pairs = $.grep(url.substring(pos + 1).split('#')[0].split('&'), function (value) {
+                return value !== '';
+            });
+            var params = {};
+
+            for (var i = 0, len = pairs.length; i < len; i++) {
+                var pair = pairs[i].split('=');
+                var name = decodeURIComponent(pair[0].replace(/\+/g, '%20'));
+                var value = decodeURIComponent(pair[1].replace(/\+/g, '%20'));
+                if (!name.length) {
+                    continue;
+                }
+                if (params[name] === undefined) {
+                    params[name] = value || '';
+                } else {
+                    if (!$.isArray(params[name])) {
+                        params[name] = [params[name]];
+                    }
+                    params[name].push(value || '');
+                }
+            }
+
+            return params;
+        },
+
+        initModule: function (module) {
+            if (module.isActive !== undefined && !module.isActive) {
+                return;
+            }
+            if ($.isFunction(module.init)) {
+                module.init();
+            }
+            $.each(module, function () {
+                if ($.isPlainObject(this)) {
+                    pub.initModule(this);
+                }
+            });
+        },
+
+        init: function () {
+            initCsrfHandler();
+            initRedirectHandler();
+            initAssetFilters();
+            initDataMethods();
+        },
+
+        /**
+         * Returns the URL of the current page without params and trailing slash. Separated and made public for testing.
+         * @returns {string}
+         */
+        getBaseCurrentUrl: function () {
+            return window.location.protocol + '//' + window.location.host;
+        },
+
+        /**
+         * Returns the URL of the current page. Used for testing, you can always call `window.location.href` manually
+         * instead.
+         * @returns {string}
+         */
+        getCurrentUrl: function () {
+            return window.location.href;
+        }
+    };
+
+    function initCsrfHandler() {
+        // automatically send CSRF token for all AJAX requests
+        $.ajaxPrefilter(function (options, originalOptions, xhr) {
+            if (!options.crossDomain && pub.getCsrfParam()) {
+                xhr.setRequestHeader('X-CSRF-Token', pub.getCsrfToken());
+            }
+        });
+        pub.refreshCsrfToken();
+    }
+
+    function initRedirectHandler() {
+        // handle AJAX redirection
+        $(document).ajaxComplete(function (event, xhr) {
+            var url = xhr && xhr.getResponseHeader('X-Redirect');
+            if (url) {
+                window.location.assign(url);
+            }
+        });
+    }
+
+    function initAssetFilters() {
+        /**
+         * Used for storing loaded scripts and information about loading each script if it's in the process of loading.
+         * A single script can have one of the following values:
+         *
+         * - `undefined` - script was not loaded at all before or was loaded with error last time.
+         * - `true` (boolean) -  script was successfully loaded.
+         * - object - script is currently loading.
+         *
+         * In case of a value being an object the properties are:
+         * - `xhrList` - represents a queue of XHR requests sent to the same URL (related with this script) in the same
+         * small period of time.
+         * - `xhrDone` - boolean, acts like a locking mechanism. When one of the XHR requests in the queue is
+         * successfully completed, it will abort the rest of concurrent requests to the same URL until cleanup is done
+         * to prevent possible errors and race conditions.
+         * @type {{}}
+         */
+        var loadedScripts = {};
+
+        $('script[src]').each(function () {
+            var url = getAbsoluteUrl(this.src);
+            loadedScripts[url] = true;
+        });
+
+        $.ajaxPrefilter('script', function (options, originalOptions, xhr) {
+            if (options.dataType == 'jsonp') {
+                return;
+            }
+
+            var url = getAbsoluteUrl(options.url),
+                forbiddenRepeatedLoad = loadedScripts[url] === true && !isReloadableAsset(url),
+                cleanupRunning = loadedScripts[url] !== undefined && loadedScripts[url]['xhrDone'] === true;
+
+            if (forbiddenRepeatedLoad || cleanupRunning) {
+                xhr.abort();
+                return;
+            }
+
+            if (loadedScripts[url] === undefined || loadedScripts[url] === true) {
+                loadedScripts[url] = {
+                    xhrList: [],
+                    xhrDone: false
+                };
+            }
+
+            xhr.done(function (data, textStatus, jqXHR) {
+                // If multiple requests were successfully loaded, perform cleanup only once
+                if (loadedScripts[jqXHR.yiiUrl]['xhrDone'] === true) {
+                    return;
+                }
+
+                loadedScripts[jqXHR.yiiUrl]['xhrDone'] = true;
+
+                for (var i = 0, len = loadedScripts[jqXHR.yiiUrl]['xhrList'].length; i < len; i++) {
+                    var singleXhr = loadedScripts[jqXHR.yiiUrl]['xhrList'][i];
+                    if (singleXhr && singleXhr.readyState !== XMLHttpRequest.DONE) {
+                        singleXhr.abort();
+                    }
+                }
+
+                loadedScripts[jqXHR.yiiUrl] = true;
+            }).fail(function (jqXHR, textStatus) {
+                if (textStatus === 'abort') {
+                    return;
+                }
+
+                delete loadedScripts[jqXHR.yiiUrl]['xhrList'][jqXHR.yiiIndex];
+
+                var allFailed = true;
+                for (var i = 0, len = loadedScripts[jqXHR.yiiUrl]['xhrList'].length; i < len; i++) {
+                    if (loadedScripts[jqXHR.yiiUrl]['xhrList'][i]) {
+                        allFailed = false;
+                    }
+                }
+
+                if (allFailed) {
+                    delete loadedScripts[jqXHR.yiiUrl];
+                }
+            });
+            // Use prefix for custom XHR properties to avoid possible conflicts with existing properties
+            xhr.yiiIndex = loadedScripts[url]['xhrList'].length;
+            xhr.yiiUrl = url;
+
+            loadedScripts[url]['xhrList'][xhr.yiiIndex] = xhr;
+        });
+
+        $(document).ajaxComplete(function () {
+            var styleSheets = [];
+            $('link[rel=stylesheet]').each(function () {
+                var url = getAbsoluteUrl(this.href);
+                if (isReloadableAsset(url)) {
+                    return;
+                }
+
+                $.inArray(url, styleSheets) === -1 ? styleSheets.push(url) : $(this).remove();
+            });
+        });
+    }
+
+    function initDataMethods() {
+        var handler = function (event) {
+            var $this = $(this),
+                method = $this.data('method'),
+                message = $this.data('confirm'),
+                form = $this.data('form');
+
+            if (method === undefined && message === undefined && form === undefined) {
+                return true;
+            }
+
+            if (message !== undefined && message !== false && message !== '') {
+                $.proxy(pub.confirm, this)(message, function () {
+                    pub.handleAction($this, event);
+                });
+            } else {
+                pub.handleAction($this, event);
+            }
+            event.stopImmediatePropagation();
+            return false;
+        };
+
+        // handle data-confirm and data-method for clickable and changeable elements
+        $(document).on('click.yii', pub.clickableSelector, handler)
+            .on('change.yii', pub.changeableSelector, handler);
+    }
+
+    function isReloadableAsset(url) {
+        for (var i = 0; i < pub.reloadableScripts.length; i++) {
+            var rule = getAbsoluteUrl(pub.reloadableScripts[i]);
+            var match = new RegExp("^" + escapeRegExp(rule).split('\\*').join('.+') + "$").test(url);
+            if (match === true) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+    function escapeRegExp(str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    }
+
+    /**
+     * Returns absolute URL based on the given URL
+     * @param {string} url Initial URL
+     * @returns {string}
+     */
+    function getAbsoluteUrl(url) {
+        return url.charAt(0) === '/' ? pub.getBaseCurrentUrl() + url : url;
+    }
+
+    return pub;
+})(window.jQuery);
+
+window.jQuery(function () {
+    window.yii.initModule(window.yii);
+});
